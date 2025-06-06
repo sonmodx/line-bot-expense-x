@@ -65,8 +65,8 @@ function createQuickReply(items) {
 function createExpenseSummary(expenseChunk, periodTitle, totalAmount) {
   const contents = expenseChunk.map((exp) => {
     const expenseDate = exp.date.toDate
-      ? moment(exp.date.toDate()).format("MM/DD HH:mm")
-      : moment(exp.createdAt).format("MM/DD HH:mm");
+      ? moment(exp.date.toDate()).format("DD/MM HH:mm")
+      : moment(exp.createdAt).format("DD/MM HH:mm");
 
     return {
       type: "box",
