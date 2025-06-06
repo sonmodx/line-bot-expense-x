@@ -266,11 +266,13 @@ async function handleMessage(event) {
     };
     userStates.set(userId, { step: "waiting_amount" });
   } else if (currentState.step === "waiting_amount") {
-    const amount = parseFloat(userMessage);
+    const sanitizedMessage = userMessage.replace(/,/g, "");
+
+    const amount = parseFloat(sanitizedMessage);
     if (isNaN(amount) || amount <= 0) {
       replyMessage = {
         type: "text",
-        text: "❌ Please enter a valid amount (e.g., 15.50):",
+        text: "❌ Please enter a valid amount (e.g., 15.50 or 10,000):",
       };
     } else {
       replyMessage = createQuickReply(CATEGORIES);
@@ -303,9 +305,9 @@ async function handleMessage(event) {
     if (success) {
       replyMessage = {
         type: "text",
-        text: `✅ Expense added successfully!\n\n💰 Amount: $${
+        text: `✅ Expense added successfully!\n\n💰 Amount: ${
           currentState.amount
-        }\n📁 Category: ${currentState.category}\n📝 Description: ${
+        } ฿\n📁 Category: ${currentState.category}\n📝 Description: ${
           description || "No description"
         }\n\nType "add" to add another expense or "today" to see today's summary.`,
       };
