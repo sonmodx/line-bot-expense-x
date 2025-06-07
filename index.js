@@ -123,7 +123,9 @@ function createExpenseSummary(expenseChunk, periodTitle, totalAmount) {
 
   return {
     type: "flex",
-    altText: `Expense Summary - Total: $${totalAmount.toFixed(2)}`,
+    altText: `Expense Summary - Total: ${Number(
+      totalAmount.toFixed(2)
+    ).toLocaleString()} ฿`,
     contents: {
       type: "bubble",
       header: {
@@ -305,9 +307,11 @@ async function handleMessage(event) {
     if (success) {
       replyMessage = {
         type: "text",
-        text: `✅ Expense added successfully!\n\n💰 Amount: ${
+        text: `✅ Expense added successfully!\n\n💰 Amount:  ${Number(
           currentState.amount
-        } ฿\n📁 Category: ${currentState.category}\n📝 Description: ${
+        ).toLocaleString()} ฿\n📁 Category: ${
+          currentState.category
+        }\n📝 Description: ${
           description || "No description"
         }\n\nType "add" to add another expense or "today" to see today's summary.`,
       };
