@@ -86,7 +86,7 @@ function createExpenseSummary(expenseChunk, periodTitle, totalAmount) {
             },
             {
               type: "text",
-              text: `${Number(totalAmount.toFixed(2)).toLocaleString()}`,
+              text: `${Number(exp.amount.toFixed(2)).toLocaleString()}`,
               size: "sm",
               align: "end",
               weight: "bold",
